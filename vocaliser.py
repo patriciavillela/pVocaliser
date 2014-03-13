@@ -8,29 +8,29 @@ def noteToPitch(note):
  tone = 0
  octave = 0
  name = note[:-1]
- if name == "A":
-  tone = 0
- if name == "A#" or name == "Bb":
-  tone = 1
- if name == "B" or name == "Cb":
-  tone = 2
  if name == "C" or name == "B#":
-  tone = 3
+  tone = 0
  if name == "C#" or name == "Db":
-  tone = 4
+  tone = 1
  if name == "D":
-  tone = 5
+  tone = 2
  if name == "D#" or name == "Eb":
-  tone = 6
+  tone = 3
  if name == "E" or name == "Fb":
-  tone = 7
+  tone = 4
  if name == "F" or name == "E#":
-  tone = 8
+  tone = 5
  if name == "F#" or name == "Gb":
-  tone = 9
+  tone = 6
  if name == "G":
-  tone = 10
+  tone = 7
  if name == "G#" or name == "Ab":
+  tone = 8
+ if name == "A":
+  tone = 9
+ if name == "A#" or name == "Bb":
+  tone = 10
+ if name == "B" or name == "Cb":
   tone = 11
 
  octave = int(note[-1:])
@@ -71,6 +71,7 @@ def makeProgression( first, last, progression ):
   MyMIDI.addNote(0,0,p + 4,time,1,100)
   MyMIDI.addNote(0,0,p + 7,time,1,100)
   time = time + 1
+
 print "Enter first note in sequence: "
 firstnote = noteToPitch(raw_input())
 # process first note
