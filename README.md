@@ -2,16 +2,19 @@ Python program to create vocalises MIDI files for vocal study.
 
 ###The use
 
-**python vocaliser.py**
+```shell
+$ python vocaliser.py
 Enter the first note in sequence:
-__C3__
+C3
 Enter the last note in sequence:
-__D3__
+D3
 Enter the first progression int the following format:
 note/duration note/duration ...
-__C3/1 E3/1 G3/1 E3/1 C3/1__
+C3/1 E3/1 G3/1 E3/1 C3/1
 Enter file name:
-__test.mid__
+test.mid
+$
+```
 
 The notes are symbolized by the tone and the octave. C3 represents the middle C, and C4 represents the next C in the keyboard.
 
