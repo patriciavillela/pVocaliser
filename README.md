@@ -18,7 +18,6 @@ $
 
 The notes are symbolized by the tone and the octave. C3 represents the middle C, and C4 represents the next C in the keyboard.
 
-<<<<<<< HEAD
 Now you can execute the program with a configuration file. The file needs to have this format:
 
 <firstnote>,<lastnote>,<prograssion>,<filename>
