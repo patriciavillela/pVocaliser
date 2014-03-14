@@ -72,24 +72,39 @@ def makeProgression( first, last, progression ):
   MyMIDI.addNote(0,0,p + 7,time,1,100)
   time = time + 1
 
-print "Enter first note in sequence: "
-firstnote = noteToPitch(raw_input())
-# process first note
+def main(argv):
 
-print "Enter last note in sequence: "
-lastnote = noteToPitch(raw_input())
-# process last note
+ if len(argv) == 1:
+  fo = open(argv[0])
+  line = fo.read()
+  array = line.split(";")
+  makeProgression(noteToPitch(array[0]),noteToPitch(array[1]),array[2].split(" "))
+  writeToFile(array[3].rstrip('\n'))
+ else:
+  print "Enter first note in sequence: "
+  firstnote = noteToPitch(raw_input())
+  # process first note
 
-print "Enter first note progression in the following format: "
-print "note/duration note/duration note/duration"
-progression = raw_input()
-# process note progression
+  print "Enter last note in sequence: "
+  lastnote = noteToPitch(raw_input())
+  # process last note
 
-progression = progression.split(" ")
-makeProgression(firstnote,lastnote,progression)
+  print "Enter first note progression in the following format: "
+  print "note/duration note/duration note/duration"
+  progression = raw_input()
+  # process note progression
 
-print "Enter file name: "
-filename = raw_input()
-binfile = open(filename, 'wb')
-MyMIDI.writeFile(binfile)
-binfile.close()
+  progression = progression.split(" ")
+  makeProgression(firstnote,lastnote,progression)
+
+  print "Enter file name: "
+  filename = raw_input()
+  writeToFile(filename)
+
+def writeToFile(filename):
+ binfile = open(filename, 'wb')
+ MyMIDI.writeFile(binfile)
+ binfile.close()
+
+if __name__ == "__main__":
+ main(sys.argv[1:])
