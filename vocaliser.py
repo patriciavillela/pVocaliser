@@ -1,7 +1,6 @@
 from midiutil.MidiFile import MIDIFile
 import sys
-MyMIDI = MIDIFile(1)
-MyMIDI.addTempo(0,0,120)
+
 time = 0
 
 def noteToPitch(note):
@@ -38,7 +37,7 @@ def noteToPitch(note):
  pitch = tone + octave * 12 + 21
  return pitch
 
-def makeProgression( first, last, progression ):
+def makeProgression( first, last, progression, MyMIDI ):
  global time
  for p in range(first,last + 1):
   MyMIDI.addNote(0,0,p,time,1,100)
@@ -71,25 +70,43 @@ def makeProgression( first, last, progression ):
   MyMIDI.addNote(0,0,p + 4,time,1,100)
   MyMIDI.addNote(0,0,p + 7,time,1,100)
   time = time + 1
+ return MyMIDI
 
-print "Enter first note in sequence: "
-firstnote = noteToPitch(raw_input())
-# process first note
+def main(argv):
 
-print "Enter last note in sequence: "
-lastnote = noteToPitch(raw_input())
-# process last note
+ if len(argv) == 1:
+  for line in open(argv[0],'r'):
+   MyMIDI = MIDIFile(1)
+   MyMIDI.addTempo(0,0,120)
+   array = line.split(";")
+   MyMIDI = makeProgression(noteToPitch(array[0]),noteToPitch(array[1]),array[2].split(" "), MyMIDI)
+   writeToFile(array[3].rstrip('\n'), MyMIDI)
+   MyMIDI = None
+ else:
+  print "Enter first note in sequence: "
+  firstnote = noteToPitch(raw_input())
+  # process first note
 
-print "Enter first note progression in the following format: "
-print "note/duration note/duration note/duration"
-progression = raw_input()
-# process note progression
+  print "Enter last note in sequence: "
+  lastnote = noteToPitch(raw_input())
+  # process last note
 
-progression = progression.split(" ")
-makeProgression(firstnote,lastnote,progression)
+  print "Enter first note progression in the following format: "
+  print "note/duration note/duration note/duration"
+  progression = raw_input()
+  # process note progression
 
-print "Enter file name: "
-filename = raw_input()
-binfile = open(filename, 'wb')
-MyMIDI.writeFile(binfile)
-binfile.close()
+  progression = progression.split(" ")
+  makeProgression(firstnote,lastnote,progression)
+
+  print "Enter file name: "
+  filename = raw_input()
+  writeToFile(filename)
+
+def writeToFile(filename, MyMIDI):
+ binfile = open(filename, 'wb')
+ MyMIDI.writeFile(binfile)
+ binfile.close()
+
+if __name__ == "__main__":
+ main(sys.argv[1:])
