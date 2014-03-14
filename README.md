@@ -20,11 +20,13 @@ The notes are symbolized by the tone and the octave. C3 represents the middle C,
 
 Now you can execute the program with a configuration file. The file needs to have this format:
 
-[firstnote],[lastnote],[prograssion],[filename]
+[firstnote],[lastnote],[progression],[filename]
 
 Execute like this;
 
 python vocalizer.py configurationfile
+
+A sample configuration file was added (sample.cfg)
 
 ###Dependencies
 

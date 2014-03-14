@@ -1,0 +1,15 @@
+================
+ Change history
+================
+
+0.2b
+====
+:release-date: 2014-03-13 22:51 -0300 GMT
+
+* Support to file input
+
+0.1b
+====
+:release-date: 2014-03-13 03:08 -0300 GMT
+
+* Fixed octave ordering
