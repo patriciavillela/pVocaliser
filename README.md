@@ -20,7 +20,7 @@ The notes are symbolized by the tone and the octave. C3 represents the middle C,
 
 Now you can execute the program with a configuration file. The file needs to have this format:
 
-<firstnote>,<lastnote>,<prograssion>,<filename>
+[firstnote],[lastnote],[prograssion],[filename]
 
 Execute like this;
 
